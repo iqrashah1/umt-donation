@@ -5,56 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMT Lahore | Donation Blink</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        .umt-gradient { background: linear-gradient(135deg, #006838 0%, #004d2a 100%); }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="bg-[#F3F4F6] min-h-screen flex items-center justify-center p-6">
+<body class="min-h-screen flex items-center justify-center p-4 md:p-10">
 
-    <div class="max-w-sm w-full bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden transition-all hover:scale-[1.02]">
+    <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
+        <div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-green-100 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
+    </div>
+
+    <div class="max-w-md w-full glass rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white overflow-hidden">
         
-        <div class="bg-[#006838] p-10 text-center relative">
-            <div class="absolute top-4 right-4 bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
-                Solana Live
+        <div class="umt-gradient p-10 text-center relative">
+            <div class="absolute top-4 right-6 flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span class="text-[10px] font-bold text-green-100 uppercase tracking-widest">Mainnet Live</span>
             </div>
-            <div class="w-20 h-20 bg-white rounded-3xl mx-auto mb-4 flex items-center justify-center shadow-lg">
-                <span class="text-[#006838] font-black text-2xl">UMT</span>
+            
+            <div class="w-20 h-20 bg-white rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl transform -rotate-3">
+                <span class="text-[#006838] font-black text-2xl tracking-tighter">UMT</span>
             </div>
-            <h1 class="text-white text-2xl font-black tracking-tight">Donation Protocol</h1>
-            <p class="text-green-100/70 text-xs mt-2 uppercase tracking-widest font-bold">Blockchain Initiative</p>
+            
+            <h1 class="text-white text-3xl font-extrabold tracking-tight mb-2">Donation Blink</h1>
+            <p class="text-green-100/60 text-[11px] font-bold uppercase tracking-[0.3em]">Lahore Blockchain Initiative</p>
         </div>
 
-        <div class="p-8 text-center">
-            <p class="text-gray-500 text-sm leading-relaxed mb-8">
-                Support UMT Lahore's student relief fund through instant, transparent blockchain donations using Solana Blinks.
-            </p>
+        <div class="p-8 md:p-10">
+            <div class="text-center mb-10">
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">
+                    Support student welfare and campus development through <span class="text-slate-900 font-bold font-semibold">Solana Blinks</span>. Transparent, instant, and secure.
+                </p>
+            </div>
 
-            <a href="https://dial.to" target="_blank" 
-               class="block w-full py-4 bg-gray-900 text-white rounded-2xl font-bold text-lg shadow-xl shadow-gray-200 hover:bg-[#006838] transition-all active:scale-95">
-                Open Blink Console
+            <div class="mb-8">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block">Official Blink Endpoint</label>
+                <div class="flex items-center bg-slate-50 border border-slate-200 rounded-2xl p-2 transition-all hover:border-green-300">
+                    <code id="blink-url" class="flex-1 px-3 text-[11px] text-slate-500 font-mono truncate lowercase">https://donation-blink.vercel.app/api/actions/donate</code>
+                    <button onclick="copyLink()" class="bg-white p-2.5 rounded-xl shadow-sm hover:bg-slate-50 border border-slate-100 transition-active active:scale-90">
+                        <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <a href="https://dial.to/?action=solana-action:https://donation-blink.vercel.app/api/actions/donate" target="_blank" 
+               class="flex items-center justify-center w-full py-5 bg-slate-900 text-white rounded-[1.5rem] font-bold text-lg shadow-xl shadow-slate-200 hover:bg-[#006838] transition-all transform active:scale-[0.98]">
+                Donate Now via Dial.to
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 opacity-50"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </a>
 
-            <div class="mt-8 flex justify-center gap-4 border-t pt-6 border-gray-50">
-                <div class="flex items-center gap-1">
-                    <span class="text-blue-500 text-lg">🛡️</span>
-                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Verified</span>
+            <div class="mt-10 flex justify-center items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center">
+                        <span class="text-xs">🛡️</span>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Verified</span>
                 </div>
-                <div class="w-px h-4 bg-gray-200"></div>
-                <div class="flex items-center gap-1">
-                    <span class="text-yellow-500 text-lg">⚡</span>
-                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Instant</span>
+                <div class="w-px h-6 bg-slate-100"></div>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-yellow-50 rounded-full flex items-center justify-center">
+                        <span class="text-xs">⚡</span>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Instant</span>
                 </div>
             </div>
         </div>
 
-        <div class="bg-gray-50 p-4 text-center">
-            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                Powered by Solana Blinks
-            </p>
+        <div class="bg-slate-50/50 p-6 text-center border-t border-slate-100">
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">Powered by Solana Network</p>
         </div>
     </div>
+
+    <script>
+        function copyLink() {
+            const url = document.getElementById('blink-url').innerText;
+            navigator.clipboard.writeText(url);
+            const icon = document.getElementById('copy-icon');
+            icon.style.color = '#10b981'; // Green on success
+            setTimeout(() => icon.style.color = '#94a3b8', 2000);
+        }
+    </script>
 
 </body>
 </html>
